@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700;800&display=swap");
+.fullscreen-media-container {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  border: 2px solid red;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.fullscreen-media-container.video {
+  position: relative;
+}
+.fullscreen-media-container.video video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+
+.fullscreen-media-container .cam-container {
+  flex-basis: 0%;
+  flex-grow: 1;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0px 20px 20px -10px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-in-out;
+  transform-origin: 100% 100%;
+}
+
+
+.fullscreen-media-container .cam-container .video {
+  position: relative;
+  padding-bottom: 56.25%;
+}
+.fullscreen-media-container .cam-container .video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+.fullscreen-media-container .cam-container .video::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  background-color: #272727;
+}
+
+
+
+.sub-video-container {
+  top:10px;
+  left:10px;
+  border: 2px solid blue;
+  border-radius: 12px;
+  width: 280px;
+  height: 170px;
+  position: fixed;
+  box-sizing: border-box;
+  cursor: move;
+}
+.sub-video-container video {
+  width: 100%;
+  height: 100%;
+  cursor: move;
+}
+
+.sub-video-container .offset-container {
+  height: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  cursor: default;
+  user-select: none;
+  font-family: Inconsolata, sans-serif;
+}
+
+.sub-video-container .offset-container .video-16-9{
+  height: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  cursor: default;
+  user-select: none;
+  font-family: Inconsolata, sans-serif;
+}
+
+.sub-video-container .offset-container .sub-video-content {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-size: 10px;
+  border: 2px solid white;
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+  padding: 5px;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sub-video-container .sub-video img {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  bottom: 2px;
+  right: 25px;
+  cursor: pointer;
+}
+
+
+.resizer {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-image: url(../img/resizeicon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px solid blue;
+  border-radius: 7px;
+  z-index: 2;
+}
+.resizer.top-left {
+  top: -1px;
+  left: -1px;
+  cursor: nw-resize;
+}
+.resizer.top-right {
+  top: -1px;
+  right: -1px;
+  cursor: ne-resize;
+}
+.resizer.bottom-left {
+  bottom: -1px;
+  left: -1px;
+  cursor: sw-resize;
+}
+.resizer.bottom-right {
+  bottom: -1px;
+  right: -1px;
+  cursor: se-resize;
+}
+
+
+
+
+
+html {
+  min-height: 100%;
+  overflow-y: scroll;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+ul, ol {
+  list-style: none;
+  margin: 0;
+}
+ul li, ol li {
+  padding: 0;
+}
+img {
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html {
+  width: 100%;
+  height: 100%;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #080808;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  font-size: 18px;
+  color: #fff;
+}
+section {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
