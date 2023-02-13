@@ -1,0 +1,439 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700;800&display=swap");
+.fullscreen-media-container {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  border: 2px solid red;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.fullscreen-media-container.video {
+  position: relative;
+}
+.fullscreen-media-container.video video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+
+.fullscreen-media-container .cam-container {
+  flex-basis: 0%;
+  flex-grow: 1;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0px 20px 20px -10px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-in-out;
+  transform-origin: 100% 100%;
+}
+
+
+.fullscreen-media-container .cam-container .video {
+  position: relative;
+  padding-bottom: 56.25%;
+}
+.fullscreen-media-container .cam-container .video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+.fullscreen-media-container .cam-container .video::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  background-color: #272727;
+}
+
+
+
+
+
+
+
+
+.video-controls, .video-timer, .options{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-container.fullscreen{
+  max-width: 100%;
+  width: 100%;
+  height: 100vh;
+  border-radius: 0px;
+}
+.wrapper{
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  opacity: 0;
+  bottom: -15px;
+  transition: all 0.08s ease;
+}
+.fullscreen-media-container.show-controls .wrapper{
+  opacity: 1;
+  bottom: 0;
+  transition: all 0.13s ease;
+}
+.wrapper::before{
+  content: "";
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: calc(100% + 35px);
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+.video-timeline{
+  height: 7px;
+  width: 100%;
+  cursor: pointer;
+}
+.video-timeline .progress-area{
+  height: 3px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.6);
+}
+.progress-area span{
+  position: absolute;
+  left: 50%;
+  top: -25px;
+  font-size: 13px;
+  color: #fff;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+.progress-area .progress-bar{
+  width: 0%;
+  height: 100%;
+  position: relative;
+  background: #2289ff;
+}
+.progress-bar::before{
+  content: "";
+  right: 0;
+  top: 50%;
+  height: 13px;
+  width: 13px;
+  position: absolute;
+  border-radius: 50%;
+  background: #2289ff;
+  transform: translateY(-50%);
+}
+.progress-bar::before, .progress-area span{
+  display: none;
+}
+.video-timeline:hover .progress-bar::before,
+.video-timeline:hover .progress-area span{
+  display: block;
+}
+.wrapper .video-controls{
+  padding: 5px 20px 10px;
+}
+.video-controls .options{
+  width: 100%;
+}
+.video-controls .options:first-child{
+  justify-content: flex-start;
+}
+.video-controls .options:last-child{
+  justify-content: flex-end;
+}
+.options button{
+  height: 40px;
+  width: 40px;
+  font-size: 19px;
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: #efefef;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+.options button :where(i, span) {
+  height: 100%;
+  width: 100%;
+  line-height: 40px;
+}
+.options button:hover :where(i, span){
+  color: #fff;
+}
+.options button:active :where(i, span){
+  transform: scale(0.9);
+}
+.options button span{
+  font-size: 23px;
+}
+.options input{
+  height: 4px;
+  margin-left: 3px;
+  max-width: 75px;
+  accent-color: #0078FF;
+}
+.options .video-timer{
+  color: #efefef;
+  margin-left: 15px;
+  font-size: 14px;
+}
+.video-timer .separator{
+  margin: 0 5px;
+  font-size: 16px;
+  font-family: "Open sans";
+}
+.playback-content{
+  display: flex;
+  position: relative;
+}
+.playback-content .speed-options{
+  position: absolute;
+  list-style: none;
+  left: -40px;
+  bottom: 40px;
+  width: 95px;
+  overflow: hidden;
+  opacity: 0;
+  border-radius: 4px;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.13s ease;
+}
+.playback-content .speed-options.show{
+  opacity: 1;
+  pointer-events: auto;
+}
+.speed-options li{
+  cursor: pointer;
+  color: #000;
+  font-size: 14px;
+  margin: 2px 0;
+  padding: 5px 0 5px 15px;
+  transition: all 0.1s ease;
+}
+.speed-options li:where(:first-child, :last-child){
+  margin: 0px;
+}
+.speed-options li:hover{
+  background: #dfdfdf;
+}
+.speed-options li.active{
+  color: #fff;
+  background: #3e97fd;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.sub-videos {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.sub-video-container {
+  position: relative;
+  margin-bottom: 20px;
+  border: 2px solid blue;
+  border-radius: 12px;
+  width: 280px;
+  height: 170px;
+  box-sizing: border-box;
+  cursor: move;
+}
+
+.sub-video-container:last-child {
+  margin-bottom: 0;
+}
+
+
+.sub-video-container video {
+  width: 100%;
+  height: 100%;
+  cursor: move;
+}
+
+.sub-video-container .offset-container {
+  height: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  cursor: default;
+  user-select: none;
+  font-family: Inconsolata, sans-serif;
+}
+
+.sub-video-container .offset-container .video-16-9{
+  height: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  cursor: default;
+  user-select: none;
+  font-family: Inconsolata, sans-serif;
+}
+
+.sub-video-container .offset-container .sub-video-content {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-size: 10px;
+  border: 2px solid white;
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+  padding: 5px;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sub-video-container .sub-video img {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  bottom: 2px;
+  right: 25px;
+  cursor: pointer;
+}
+
+
+.resizer {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-image: url(../img/resizeicon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px solid blue;
+  border-radius: 7px;
+  z-index: 2;
+}
+.resizer.top-left {
+  top: -1px;
+  left: -1px;
+  cursor: nw-resize;
+}
+.resizer.top-right {
+  top: -1px;
+  right: -1px;
+  cursor: ne-resize;
+}
+.resizer.bottom-left {
+  bottom: -1px;
+  left: -1px;
+  cursor: sw-resize;
+}
+.resizer.bottom-right {
+  bottom: -1px;
+  right: -1px;
+  cursor: se-resize;
+}
+
+
+
+
+
+html {
+  min-height: 100%;
+  overflow-y: scroll;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+ul, ol {
+  list-style: none;
+  margin: 0;
+}
+ul li, ol li {
+  padding: 0;
+}
+img {
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html {
+  width: 100%;
+  height: 100%;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #080808;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  font-size: 18px;
+  color: #fff;
+}
+section {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
